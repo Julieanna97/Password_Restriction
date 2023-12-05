@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "c:\\Users\\Julie\\OneDrive\\Documents\\GitHub\\Password_Restriction",
+            "binaryPath": "c:\\Users\\Julie\\OneDrive\\Documents\\GitHub\\Password_Restriction\\programmet-debug.exe",
+            "binaryArgs": []
+        }
+    ]
+}

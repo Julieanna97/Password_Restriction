@@ -1,6 +1,6 @@
 PROG=programmet.exe
 TEST=check.exe
-SOURCES=isValidPassword.h isValidPassword.c
+SOURCES=isValidPassword.cpp
 DEPS=
 CC=gcc
 CFLAGS=-Wall -Werror
@@ -9,32 +9,34 @@ GTEST = gtest
 LIBGTEST = C:\msys64\mingw64\lib\libgtest_main.a C:\msys64\mingw64\lib\libgtest.a
 
 ifeq ($(DEBUG), 1)
-	CFLAGS += -g
-	OUTPUTDIR=bin/debug
-	PROG=programmet-debug.exe
+    CFLAGS += -g
+    OUTPUTDIR=bin/debug
+    PROG=programmet-debug.exe
 else
-	CFLAGS += -g0 -O3
-	OUTPUTDIR=bin/release
+    CFLAGS += -g0 -O3
+    OUTPUTDIR=bin/release
 endif
 
+OBJS =  $(addprefix $(OUTPUTDIR)/,$(SOURCES:.cpp=.o))
 
-OBJS =  $(addprefix $(OUTPUTDIR)/,$(SOURCES:.c=.o))
+$(PROG): $(OUTPUTDIR) $(OBJS)
+	$(CC)	$(CFLAGS)	-o	$@	$(OBJS)	-lstdc++
 
-$(PROG): $(OUTPUTDIR) $(OBJS) 
-	$(CC) $(CFLAGS) -o $(PROG) $(OBJS)
-
-$(OUTPUTDIR)/%.o: %.c $(DEPS)
-	$(CC) $(CFLAGS) -o $@ -c $< 
+$(OUTPUTDIR)/%.o:	%.cpp	$(DEPS)
+	$(CC)	$(CFLAGS) -o	$@	-c	$<
 
 clean:
-	@del /q "$(OUTPUTDIR)" 
-	@del /q $(PROG)
+	@del	/q	"$(OUTPUTDIR)"
+	@del	/q	$(PROG)
 
 $(OUTPUTDIR):
-	@mkdir "$(OUTPUTDIR)"
+	@mkdir	-p	"$(OUTPUTDIR)"
 
-$(TEST): password.o PasswordsTests.cpp
-	g++ -o $@ $^ $(CFLAGS) -I $(GTEST)  $(LIBGTEST)
+# Add the following rules for the test target
+TEST=check.exe
+
+$(TEST):	password.o PasswordTests.cpp
+	g++	-o	$@	$^	$(CFLAGS)	-I	$(GTEST)	$(LIBGTEST)	-lstdc++
 
 test: $(TEST)
 	./$(TEST)
