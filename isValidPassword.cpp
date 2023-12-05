@@ -20,8 +20,8 @@ PASSWORD_ERROR checkPassword(const std::string& password);
 int main()
 {
     string password;
-    cout << "Enter your password: ";
-    cin >> password;
+    cout << "The password tester\nEnter your password: ";
+    getline(cin, password);
 
     PASSWORD_ERROR result = checkPassword(password);
 
@@ -96,9 +96,9 @@ PASSWORD_ERROR checkPassword(const std::string& password)
     }
 
     // Check if the password contains certain words
-    const char *forbiddenWords[] = {"password", "secret", "summer", "winter"};
+    const string forbiddenWords[] = {"password", "secret", "summer", "winter"};
 
-    for (const char *forbiddenWord : forbiddenWords)
+    for (const string& forbiddenWord : forbiddenWords)
     {
         if (password.find(forbiddenWord) != string::npos)
         {
