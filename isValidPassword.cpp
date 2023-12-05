@@ -1,19 +1,6 @@
-/**
- * @file main.cpp
- * @author Julie Anne (julie.cantillep@studerande.movant.se)
- * @brief A program that demonstrates password verifier with set limit
- * of characters and symbols
- * @version 0.1
- * @date 2023-12-05
- * 
- * @copyright Copyright (c) 2023
- * 
- */
-
 #include <iostream>
 #include <cctype>
 #include <cstring>
-#include "isValidPassword.h"
 
 using namespace std;
 
@@ -28,12 +15,12 @@ typedef enum
                                                 // password, secret, summer, winter
 } PASSWORD_ERROR;
 
-PASSWORD_ERROR checkPassword(const char *password);
+PASSWORD_ERROR checkPassword(const std::string& password);
 
 int main()
 {
-    const char *password[255];
-    cout <<"Enter your password: ";
+    string password;
+    cout << "Enter your password: ";
     cin >> password;
 
     PASSWORD_ERROR result = checkPassword(password);
@@ -61,12 +48,63 @@ int main()
     }
 
     return 0;
-
 }
 
-PASSWORD_ERROR checkPassword(const char *password)
+PASSWORD_ERROR checkPassword(const std::string& password)
 {
+    // Check if the password is at least 8 characters long
+    if (password.length() < 8)
+    {
+        return PASSWORD_ERROR_TOO_SHORT;
+    }
 
+    // Check if the password contains at least one uppercase letter,
+    // one lowercase letter, and one digit 
+    bool hasUppercase = false;
+    bool hasLowercase = false;
+    bool hasDigit = false;
 
+    for(char ch : password)
+    {
+        if (isupper(ch))
+        {
+            hasUppercase = true;
+        }
+        else if(islower(ch))
+        {
+            hasLowercase = true;
+        }
+        else if (isdigit(ch))
+        {
+            hasDigit = true;
+        }
+    }
 
+    if (!hasUppercase)
+    {
+        return PASSWORD_ERROR_NO_UPPERCASE_LETTER;
+    }
+    
+    if (!hasLowercase)
+    {
+        return PASSWORD_ERROR_NO_LOWERCASE_LETTER;
+    }
+
+    if (!hasDigit)
+    {
+        return PASSWORD_ERROR_NO_NUMBER;
+    }
+
+    // Check if the password contains certain words
+    const char *forbiddenWords[] = {"password", "secret", "summer", "winter"};
+
+    for (const char *forbiddenWord : forbiddenWords)
+    {
+        if (password.find(forbiddenWord) != string::npos)
+        {
+            return PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS;
+        }
+    }
+
+    return PASSWORD_ERROR_OK;
 }

@@ -33,7 +33,7 @@ clean:
 $(OUTPUTDIR):
 	@mkdir "$(OUTPUTDIR)"
 
-$(TEST): password.o
+$(TEST): password.o PasswordsTests.cpp
 	g++ -o $@ $^ $(CFLAGS) -I $(GTEST)  $(LIBGTEST)
 
 test: $(TEST)

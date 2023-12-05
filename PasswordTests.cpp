@@ -20,6 +20,19 @@ class PasswordTest : public testing::Test
 TEST_F(PasswordTest, WhenLessThanEightCharsShouldReturnErrorTooShort)
 {
     // ARRANGE
+    const char *password = "1234567";
     // ACT
+    PASSWORD_ERROR result = checkPassword(password);
     // ASSERT
+    ASSERT_EQ(result, PASSWORD_ERROR_TOO_SHORT);
+}
+
+TEST_F(PasswordTest, WhenUpperCaseShouldReturnErrorNoUpperCase)
+{
+    // ARRANGE
+    const char *password = "test12345";
+    // ACT
+    PASSWORD_ERROR result = checkPassword(password);
+    // ASSERT
+    ASSERT_EQ(result, PASSWORD_ERROR_NO_UPPERCASE_LETTER);
 }
