@@ -13,6 +13,6 @@ typedef enum
                                                 // password, secret, summer, winter
 } PASSWORD_ERROR;
 
-PASSWORD_ERROR checkPassword(const string& password);
+PASSWORD_ERROR checkPassword(const std::string& password);
 
 #endif

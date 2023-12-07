@@ -5,5 +5,8 @@
             "binaryPath": "c:\\Users\\Julie\\OneDrive\\Documents\\GitHub\\Password_Restriction\\programmet-debug.exe",
             "binaryArgs": []
         }
-    ]
+    ],
+        "files.associations": {
+        "iostream": "cpp"
+    }
 }

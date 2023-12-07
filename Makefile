@@ -35,7 +35,7 @@ $(OUTPUTDIR):
 # Add the following rules for the test target
 TEST=check.exe
 
-$(TEST):	password.o PasswordTests.cpp
+$(TEST):	isValidPassword.o	PasswordTests.cpp	isValidPassword.cpp
 	g++	-o	$@	$^	$(CFLAGS)	-I	$(GTEST)	$(LIBGTEST)	-lstdc++
 
 test: $(TEST)

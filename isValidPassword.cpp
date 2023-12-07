@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <cctype>
 #include <cstring>
 
@@ -20,31 +21,35 @@ PASSWORD_ERROR checkPassword(const std::string& password);
 int main()
 {
     string password;
-    cout << "The password tester\nEnter your password: ";
-    getline(cin, password);
-
-    PASSWORD_ERROR result = checkPassword(password);
-
-    switch (result)
+    while(true)
     {
-        case PASSWORD_ERROR_OK:
-            cout << "Password is valid." << endl;
-            break;
-        case PASSWORD_ERROR_TOO_SHORT:
-            cout << "Password is too short." << endl;
-            break;
-        case PASSWORD_ERROR_NO_UPPERCASE_LETTER:
-            cout << "Password must contain at least one uppercase letter." << endl;
-            break;
-        case PASSWORD_ERROR_NO_LOWERCASE_LETTER:
-            cout << "Password must contain at least one lowercase letter." << endl;
-            break;
-        case PASSWORD_ERROR_NO_NUMBER:
-            cout << "Password must contain at least one digit." << endl;
-            break;
-        case PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS:
-            cout << "Password can't contain certain words." << endl;
-            break;
+        cout << "The password tester\nEnter your password: ";
+        getline(cin, password);
+
+        PASSWORD_ERROR result = checkPassword(password);
+
+        switch (result)
+        {
+            case PASSWORD_ERROR_OK:
+                cout << "Password is valid." << endl;
+                break;
+            case PASSWORD_ERROR_TOO_SHORT:
+                cout << "Password is too short." << endl;
+                break;
+            case PASSWORD_ERROR_NO_UPPERCASE_LETTER:
+                cout << "Password must contain at least one uppercase letter." << endl;
+                break;
+            case PASSWORD_ERROR_NO_LOWERCASE_LETTER:
+                cout << "Password must contain at least one lowercase letter." << endl;
+                break;
+            case PASSWORD_ERROR_NO_NUMBER:
+                cout << "Password must contain at least one digit." << endl;
+                break;
+            case PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS:
+                cout << "Password can't contain certain words." << endl;
+                break;
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     return 0;
