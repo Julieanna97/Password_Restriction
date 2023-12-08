@@ -1,6 +1,5 @@
-#ifndef __ISVALIDPASSWORD_H
-#define __ISVALIDPASSWORD_H
-#include <string>
+#ifndef __PASSWORD_H
+#define __PASSWORD_H
 
 typedef enum
 {
@@ -13,6 +12,6 @@ typedef enum
                                                 // password, secret, summer, winter
 } PASSWORD_ERROR;
 
-PASSWORD_ERROR checkPassword(const std::string& password);
+PASSWORD_ERROR checkPassword(const char *password);
 
 #endif

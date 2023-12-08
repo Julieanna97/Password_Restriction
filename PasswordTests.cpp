@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-extern "C" {
-#include "isValidPassword.h"
+extern "C++" {
+    #include "password.h"
 }
 
 class PasswordTest : public testing::Test
@@ -35,4 +35,23 @@ TEST_F(PasswordTest, WhenUpperCaseShouldReturnErrorNoUpperCase)
     PASSWORD_ERROR result = checkPassword(password);
     // ASSERT
     ASSERT_EQ(result, PASSWORD_ERROR_NO_UPPERCASE_LETTER);
+}
+
+TEST_F(PasswordTest,WhenNoLowerCaseShouldReturnErrorNoLowerCase){
+    // ARRANGE
+    const char *password = "TEST12345";
+    // ACT 
+    PASSWORD_ERROR error = checkPassword(password);
+    //ASSERT
+    ASSERT_EQ(error,PASSWORD_ERROR_NO_LOWERCASE_LETTER);
+}
+
+
+TEST_F(PasswordTest,WhenBadWordsShouldReturnErrorNoCertainWords){
+    // ARRANGE
+    const char *password = "Test123password45";
+    // ACT 
+    PASSWORD_ERROR error = checkPassword(password);
+    //ASSERT
+    ASSERT_EQ(error,PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS);
 }
