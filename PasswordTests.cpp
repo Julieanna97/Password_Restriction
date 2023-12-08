@@ -20,7 +20,7 @@ class PasswordTest : public testing::Test
 TEST_F(PasswordTest, WhenLessThanEightCharsShouldReturnErrorTooShort)
 {
     // ARRANGE
-    const char *password = "1234567";
+    const char *password = "tT1237";
     // ACT
     PASSWORD_ERROR result = checkPassword(password);
     // ASSERT
