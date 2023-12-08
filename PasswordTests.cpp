@@ -22,9 +22,9 @@ TEST_F(PasswordTest, WhenLessThanEightCharsShouldReturnErrorTooShort)
     // ARRANGE
     const char *password = "tT1237";
     // ACT
-    PASSWORD_ERROR result = checkPassword(password);
+    PASSWORD_ERROR error = checkPassword(password);
     // ASSERT
-    ASSERT_EQ(result, PASSWORD_ERROR_TOO_SHORT);
+    ASSERT_EQ(error, PASSWORD_ERROR_TOO_SHORT);
 }
 
 TEST_F(PasswordTest, WhenUpperCaseShouldReturnErrorNoUpperCase)
@@ -32,9 +32,9 @@ TEST_F(PasswordTest, WhenUpperCaseShouldReturnErrorNoUpperCase)
     // ARRANGE
     const char *password = "test12345";
     // ACT
-    PASSWORD_ERROR result = checkPassword(password);
+    PASSWORD_ERROR error = checkPassword(password);
     // ASSERT
-    ASSERT_EQ(result, PASSWORD_ERROR_NO_UPPERCASE_LETTER);
+    ASSERT_EQ(error, PASSWORD_ERROR_NO_UPPERCASE_LETTER);
 }
 
 TEST_F(PasswordTest,WhenNoLowerCaseShouldReturnErrorNoLowerCase){
@@ -43,7 +43,7 @@ TEST_F(PasswordTest,WhenNoLowerCaseShouldReturnErrorNoLowerCase){
     // ACT 
     PASSWORD_ERROR error = checkPassword(password);
     //ASSERT
-    ASSERT_EQ(error,PASSWORD_ERROR_NO_LOWERCASE_LETTER);
+    ASSERT_EQ(error, PASSWORD_ERROR_NO_LOWERCASE_LETTER);
 }
 
 
@@ -53,5 +53,6 @@ TEST_F(PasswordTest,WhenBadWordsShouldReturnErrorNoCertainWords){
     // ACT 
     PASSWORD_ERROR error = checkPassword(password);
     //ASSERT
-    ASSERT_EQ(error,PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS);
+    ASSERT_EQ(error, PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS);
 }
+

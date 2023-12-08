@@ -1,5 +1,6 @@
 #ifndef __PASSWORD_H
 #define __PASSWORD_H
+#include <cstring>  // Include this header for strcmp
 
 typedef enum
 {

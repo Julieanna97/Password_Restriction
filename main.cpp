@@ -5,14 +5,23 @@ using namespace std;
 
 int main()
 {
-    char input[255];
-    cout << "The password tester\nEnter password:";
-    cin.getline(input, sizeof(input));
-
-    PASSWORD_ERROR result = checkPassword(input);
-
-    switch(result)
+    while (true) // Infinite loop
     {
+        char input[255];
+        cout << "The password tester\nEnter password (type 'exit' to quit): ";
+        cin.getline(input, sizeof(input));
+
+        // Check if the user wants to exit
+        if (strcmp(input, "exit") == 0)
+        {
+            cout << "Exiting the program. Goodbye!" << endl;
+            break; // Exit the loop
+        }
+
+        PASSWORD_ERROR result = checkPassword(input);
+
+        switch (result)
+        {
         case PASSWORD_ERROR_OK:
             cout << "Password is valid." << endl;
             break;
@@ -31,7 +40,7 @@ int main()
         case PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS:
             cout << "Password can't contain certain words." << endl;
             break;
-
+        }
     }
 
     return 0;
