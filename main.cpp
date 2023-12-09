@@ -3,6 +3,12 @@
 
 using namespace std;
 
+// Unit tests
+// It's about calling a function with specific values
+// and verifying that it will be the correct answer
+// .-> exe.file that can be run, if it runs, all tests will run
+
+
 int main()
 {
     while (true) // Infinite loop

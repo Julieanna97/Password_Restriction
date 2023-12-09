@@ -56,3 +56,13 @@ TEST_F(PasswordTest,WhenBadWordsShouldReturnErrorNoCertainWords){
     ASSERT_EQ(error, PASSWORD_ERROR_CANT_CONTAIN_CERTAIN_WORDS);
 }
 
+TEST_F(PasswordTest,WhenNoNumbersShouldReturnErrorNoNumbers){
+    // ARRANGE
+    const char *password = "Testpassswordlol";
+    // ACT 
+    PASSWORD_ERROR error = checkPassword(password);
+    //ASSERT
+    ASSERT_EQ(error, PASSWORD_ERROR_NO_NUMBER);
+}
+
+
